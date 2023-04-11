@@ -1,7 +1,6 @@
 package com.ClinicaOdontologicaCHUTT.controller;
 
 import com.ClinicaOdontologicaCHUTT.entity.Odontologo;
-import com.ClinicaOdontologicaCHUTT.entity.Paciente;
 import com.ClinicaOdontologicaCHUTT.exception.ResourceNotFoundException;
 import com.ClinicaOdontologicaCHUTT.service.OdontologoService;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
+
     private final OdontologoService odontologoService;
 
     public OdontologoController(OdontologoService odontologoService) {
@@ -32,8 +32,8 @@ public class OdontologoController {
     }
 
     @GetMapping
-    public List<Odontologo> listarOdontologos() {
-        return odontologoService.listarOdontologos();
+    public ResponseEntity<List<Odontologo>> listarOdontologos() {
+        return ResponseEntity.ok(odontologoService.listarOdontologos());
     }
 
     @GetMapping("/{id}")

@@ -62,6 +62,19 @@ public class Paciente {
 
     }
 
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cedula='" + cedula + '\'' +
+                ", fechaDeIngreso=" + fechaDeIngreso +
+                ", domicilio=" + domicilio +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

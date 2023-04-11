@@ -20,6 +20,9 @@ public class DatosInicialesUsuarios implements ApplicationRunner {
         String clave = "12345";
         String claveCifrada = encoder.encode(clave);
         Usuario usuarioAInsertar = new Usuario("Mateo","mateobr0","mateo@gmail.com", claveCifrada, UsuarioRole.ROLE_USER);
+        Usuario usuarioAdminAInsertar = new Usuario("Admin","adminbr0","admin@gmail.com", claveCifrada, UsuarioRole.ROLE_ADMIN);
+
         usuarioRepository.save(usuarioAInsertar);
+        usuarioRepository.save(usuarioAdminAInsertar);
     }
 }

@@ -21,16 +21,6 @@ public class TurnoController {
         this.turnoService = turnoService;
     }
 
-    /*@PostMapping("/guardar")
-    public Turno guardarTurno(@RequestBody TurnoDTO turnoDTO) throws BadRequestException {
-        Optional<TurnoDTO> turnoDTOBuscado = turnoService.buscarTurno(turnoDTO.getId());
-        if (turnoDTOBuscado.isPresent()){
-            throw new BadRequestException("ya existe");
-        }else {
-            return turnoService.guardarTurno(turnoDTO);
-        }
-    }*/
-
     @PostMapping("/guardar")
     public ResponseEntity<TurnoDTO> guardarTurno(@RequestBody TurnoDTO turnoDTO) throws BadRequestException {
         if (estaCompleto(turnoDTO) && turnoService.buscarTurno(turnoDTO.getId()).isEmpty()){
@@ -64,7 +54,6 @@ public class TurnoController {
         }
         return response;
     }
-
 
     @PutMapping("/actualizar")
     public ResponseEntity<?> actualizarPaciente(@RequestBody TurnoDTO turnoDTO) {

@@ -39,14 +39,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/odontologos")
-                .permitAll()
+                .antMatchers("/turnos.html","/turnos").hasAnyRole("USER","ADMIN")
+                .antMatchers("/*paciente*").hasRole("ADMIN")
+                //.permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .and()
                 .logout();
+        /*http
+              .csrf().disable()
+              .authorizeRequests()
+              .antMatchers("/get_lista_odontologos*").permitAll()
+              .antMatchers("/*odontologo*").hasRole("ADMIN") //para ingresar a odontologos tenes que ser admin
+              .antMatchers("/*paciente*").hasRole("ADMIN")
+              .anyRequest()
+                .authenticated()
+                .and()
+              .formLogin()
+                .and()
+                .logout();*/
+
     }
 
 }

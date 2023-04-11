@@ -17,7 +17,6 @@ public class OdontologoService {
     }
 
     public Odontologo guardarOdontologo(Odontologo odontologo) {
-
         return odontologoRepository.save(odontologo);
     }
 

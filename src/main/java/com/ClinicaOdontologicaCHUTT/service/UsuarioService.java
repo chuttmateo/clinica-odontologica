@@ -21,18 +21,6 @@ public class UsuarioService implements UserDetailsService {
         this.usuarioRepository = usuarioRepository;
     }
 
-
-    /*@Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> usuarioBuscado = usuarioRepository.findByEmail(username);
-        Set<GrantedAuthority> rolesDeUsuario = new HashSet<>();
-
-        for (UsuarioRole rol: usuarioBuscado.get().getUsuarioRole() ) {
-
-        }
-        return null;
-    }*/
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Usuario> usuarioBuscado = usuarioRepository.findByEmail(username);
