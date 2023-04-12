@@ -1,20 +1,18 @@
 package com.ClinicaOdontologicaCHUTT.service;
 
 import com.ClinicaOdontologicaCHUTT.entity.Usuario;
-import com.ClinicaOdontologicaCHUTT.entity.UsuarioRole;
 import com.ClinicaOdontologicaCHUTT.repository.IUsuarioRepository;
-import org.springframework.security.core.GrantedAuthority;
+import org.apache.log4j.Logger;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UsuarioService implements UserDetailsService {
+    private static final Logger LOGGER = Logger.getLogger(UsuarioService.class);
     private final IUsuarioRepository usuarioRepository;
 
     public UsuarioService(IUsuarioRepository usuarioRepository) {
@@ -27,6 +25,7 @@ public class UsuarioService implements UserDetailsService {
         if (usuarioBuscado.isPresent()){
             return usuarioBuscado.get();
         }else {
+            LOGGER.warn("No existe un usuario con ese correo electronico");
             throw new UsernameNotFoundException("No existe un usuario con ese correo electronico");
         }
 

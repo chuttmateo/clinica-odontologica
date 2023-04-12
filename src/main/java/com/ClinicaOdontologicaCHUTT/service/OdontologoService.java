@@ -3,6 +3,7 @@ package com.ClinicaOdontologicaCHUTT.service;
 import com.ClinicaOdontologicaCHUTT.entity.Odontologo;
 import com.ClinicaOdontologicaCHUTT.exception.ResourceNotFoundException;
 import com.ClinicaOdontologicaCHUTT.repository.IOdontologoRepository;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class OdontologoService {
+    private static final Logger LOGGER = Logger.getLogger(OdontologoService.class);
     private final IOdontologoRepository odontologoRepository;
 
     public OdontologoService(IOdontologoRepository odontologoRepository) {
@@ -28,6 +30,7 @@ public class OdontologoService {
         if (buscarOdontologoPorId(id).isPresent()) {
             odontologoRepository.deleteById(id);
         } else {
+            LOGGER.warn("No se puede eliminar ese odontologo porque no existe en la db");
             throw new ResourceNotFoundException("No se puede eliminar ese odontologo porque no existe en la db");
         }
     }

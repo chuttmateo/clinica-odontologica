@@ -9,6 +9,7 @@ import com.ClinicaOdontologicaCHUTT.exception.ResourceNotFoundException;
 import com.ClinicaOdontologicaCHUTT.repository.IOdontologoRepository;
 import com.ClinicaOdontologicaCHUTT.repository.IPacienteRepository;
 import com.ClinicaOdontologicaCHUTT.repository.ITurnoRepository;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Service
 public class TurnoService {
+    private final static Logger LOGGER = Logger.getLogger(TurnoService.class);
     private final ITurnoRepository turnoRepository;
     private final IPacienteRepository pacienteRepository;
     private final IOdontologoRepository odontologoRepository;
@@ -49,6 +51,7 @@ public class TurnoService {
         if (buscarTurno(id).isPresent()) {
             turnoRepository.deleteById(id);
         } else {
+            LOGGER.warn("No se puede eliminar este turno porque no existe en la db");
             throw new ResourceNotFoundException("No se puede eliminar este turno porque no existe en la db");
         }
     }
@@ -61,6 +64,7 @@ public class TurnoService {
         if (pacienteRepository.findById(turnoDTO.getPacienteId()).isPresent() && odontologoRepository.findById(turnoDTO.getOdontologoId()).isPresent() && buscarTurno(turnoDTO.getId()).isEmpty()) {
             return turnoATurnoDTO(turnoRepository.save(turnoDTOATurno(turnoDTO)));
         } else {
+            LOGGER.warn("Un turno debe contener un ID de un odontologo y un ID de un paciente registrado anteriormente");
             throw new BadRequestException("Un turno debe contener un ID de un odontologo y un ID de un paciente registrado anteriormente");
         }
     }
