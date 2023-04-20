@@ -1,0 +1,1 @@
+El Sistema de Reserva de Turnos fue desarrollado como proyecto de la materia Backend I en la carrera CTD, siguiendo una arquitectura en capas Modelo-Vista-Controlador (MVC). La aplicación utiliza una base de datos en memoria H2 para almacenar los datos de los turnos reservados, permitiendo una gestión eficiente y segura de la información.
